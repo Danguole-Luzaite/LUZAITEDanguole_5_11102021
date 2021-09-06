@@ -1,3 +1,41 @@
+header nav a .accueil {
+  color: #000;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footers a {
+  color: #696969;
+}
+
+.footers p {
+  color: #696969;
+}
+.footers ul {
+  line-height: 30px;
+}
+
+#social-fb:hover {
+  color: #4099FF;
+  transition: all 0.001s;
+}
+
+#social-tw:hover {
+  color: #4099FF;
+  transition: all 0.001s;
+}
+
+#social-gp:hover {
+  color: #4099FF;
+  transition: all 0.001s;
+}
+
+#social-em:hover {
+  color: #4099FF;
+  transition: all 0.001s;
+}
+
 .card__chair {
   width: 348px;
   height: 232px;

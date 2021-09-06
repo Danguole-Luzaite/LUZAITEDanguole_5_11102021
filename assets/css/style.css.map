@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../sass/pages/_liste-de-produits.scss"],"names":[],"mappings":"AACI;EACI;EACA;EACA","file":"style.css"}
+{"version":3,"sourceRoot":"","sources":["../sass/layout/_header.scss","../sass/utils/_variable_overrides.scss","../sass/layout/_footer.scss","../sass/pages/_liste-de-produits.scss"],"names":[],"mappings":"AAGY;EACI,OCHH;EDIG;EACA;EACA;;;AENZ;EACI;;;AAIJ;EACI,ODLa;;ACOjB;EACI;;;AAGR;EACK,ODXwB;ECYxB;;;AAEJ;EACI,ODfwB;ECgBxB;;;AAEJ;EACI,ODnBwB;ECoBxB;;;AAEJ;EACI,ODvBwB;ECwBxB;;;ACzBD;EACI;EACA;EACA","file":"style.css"}
