@@ -1,3 +1,7 @@
+h2 {
+  font-size: 1.5rem;
+}
+
 header nav a .accueil {
   color: #000;
   font-size: 1.1rem;
@@ -36,10 +40,32 @@ header nav a .accueil {
   transition: all 0.001s;
 }
 
-.card__chair {
+.card__oak-chair {
   width: 348px;
   height: 232px;
   object-fit: contain;
+}
+
+.container__product-details {
+  height: 350px;
+}
+.container__product-details .product-image {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.container__product-details .product-image-chair {
+  height: 62%;
+}
+.container__product-details .product-name {
+  border-bottom: grey 1px dotted;
+}
+.container__product-details .product-name-width {
+  width: 50%;
+}
+
+.btn-width {
+  width: 90%;
 }
 
 /*# sourceMappingURL=style.css.map */

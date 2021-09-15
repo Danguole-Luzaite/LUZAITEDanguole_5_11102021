@@ -9,7 +9,7 @@
         <!-- link to css-->
         <link rel="stylesheet" href="/assets/css/style.css">
         <script src="https://kit.fontawesome.com/dd84544794.js" crossorigin="anonymous"></script>
-        <title>Liste de produits, accueil</title>
+        <title>Page de produit, Chêne 4, Banc</title>
     </head>
     <body>
         <header>
@@ -46,60 +46,42 @@
         </header>
 
         <main>
-            <section class="container">
-                <div class="text-center py-4">
-                    <H1 class="p-3">Bienvenue chez Orinoco, site de vente de meubles en chêne</H1>
-                </div>
-                <div class="row mt-2 mb-3" id="list-product">
-                    <a href="/views/pages de produit/page_de_produit-1cross_table.html" class="col-12 col-sm-6 col-md-4 mb-3">
-                        <div class="card">
-                            <img class="card-image-top" src="/assets/images/oak_1.jpg" alt="Produit 1">
-                            <div class="card-body">
-                                <h2 class="card-title">Table croisé</h2>
-                                <p class="card-text">59900 &euro;</p>
+            <section>
+                <div class="container">
+                    <div class="row container__product-details rounded shadow m-5 p-3">
+                        <!-- product image-->
+                        <div class="col-5">
+                            <img class="product-image" src="/assets/images/oak_4.jpg" alt="Banc">
+                        </div>
+                        <!-- product description-->
+                        <div class="col-7">
+                            <div class="row product-name">
+                                <h5 class="p-3 product-name-width">Banc</h5>
+                                <span class="p-3 product-price product-name-width ">39900 &euro;</span>
+                            </div>
+                            <div class="product-description pt-4 pb-3">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                            <!-- product-customization - personnalisation de produit, menu déroulant-->
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Sélectionnez le type de vernis...
+                                <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" class="pl-2">Light Oak</a></li>
+                                    <li><a href="#" class="pl-2">Teak</a></li>
+                                </ul>
+                            </div>
+                            <!-- buttons: "Retourner" et "Ajouter au panier"-->
+                            <div class="row mt-4">
+                                <div class="col">
+                                    <a href="/index.html" class="btn btn-outline-secondary btn-width" role="button">Retourner</a>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-outline-primary btn-width">Ajouter au panier</button>
+                                </div>
                             </div>
                         </div>
-                    </a>
-                    
-                    <a href="/views/pages de produit/page_de_produit-2coffee_table.html" class="col-12 col-sm-6 col-md-4 mb-3">
-                        <div class="card">
-                            <img class="card-image-top" src="/assets/images/oak_2.jpg" alt="Produit 2">
-                            <div class="card-body">
-                                <h2 class="card-title">Table basse</h2>
-                                <p class="card-text">89900 &euro;</p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="/views/pages de produit/page_de_produit-3dining_table.html" class="col-12 col-sm-6 col-md-4 mb-3">
-                        <div class="card">
-                            <img class="card-image-top" src="/assets/images/oak_3.jpg" alt="Produit 3">
-                            <div class="card-body">
-                                <h2 class="card-title">Table à manger (extensible)</h2>
-                                <p class="card-text">109900 &euro;</p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="/views/pages de produit/page_de_produit-4bench.html" class="col-12 col-sm-6 col-md-4 mb-3">
-                        <div class="card">
-                            <img class="card-image-top" src="/assets/images/oak_4.jpg" alt="Produit 4">
-                            <div class="card-body">
-                                <h2 class="card-title">Banc</h2>
-                                <p class="card-text">39900 &euro;</p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="/views/pages de produit/page_de_produit-5vintage_chair.html" class="col-12 col-sm-6 col-md-4 mb-3">
-                        <div class="card">
-                            <img class="card-image-top card__oak-chair" src="/assets/images/oak_5.jpg" alt="Produit 5">
-                            <div class="card-body">
-                                <h2 class="card-title">Chaise Vintage</h2>
-                                <p class="card-text">79900 &euro;</p>
-                            </div>
-                        </div>
-                    </a>
+                    </div>    
                 </div>
             </section>
         </main>
@@ -156,6 +138,5 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-         <script src="/assets/js/index.js"></script>  
     </body>
 </html>

@@ -1,0 +1,21 @@
+.container__product-details{ 
+    height: 350px;
+    .product-image{ 
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+    .product-image-chair{
+        height: 62%;
+    }
+    .product-name{
+        border-bottom: grey 1px dotted;
+    }
+    .product-name-width{
+        width: 50%;
+    }
+}
+
+.btn-width{
+    width: 90%;
+}
