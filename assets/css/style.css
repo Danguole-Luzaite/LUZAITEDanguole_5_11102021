@@ -68,4 +68,12 @@ header nav a .accueil {
   width: 90%;
 }
 
+.img-thumbnail {
+  max-width: 100px;
+}
+
+.total-price {
+  font-size: 1.3rem;
+}
+
 /*# sourceMappingURL=style.css.map */
