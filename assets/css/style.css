@@ -43,7 +43,7 @@ header nav a .accueil {
 .card__oak-chair {
   width: 348px;
   height: 232px;
-  object-fit: contain;
+  /*object-fit: contain;*/
 }
 .card .card-image-top {
   height: 287px;

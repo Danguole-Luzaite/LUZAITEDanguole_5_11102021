@@ -7,16 +7,16 @@
         <!-- bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <!-- link to css-->
-        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/frontend/assets/css/style.css">
         <script src="https://kit.fontawesome.com/dd84544794.js" crossorigin="anonymous"></script>
         <title>Panier</title>
     </head>
     <body>
         <header>
             <nav class="navbar navbar-expand-lg bg-light px-lg-5">
-                <a class="navbar-brand" href="/index.html">
+                <a class="navbar-brand" href="/frontend/index.html">
                     <!--insert logo-->
-                    <img src="/assets/images/orinoco_logo.png" width="149" height="64" alt="image du logo orinoco">
+                    <img src="/frontend/assets/images/orinoco_logo.png" width="149" height="64" alt="image du logo orinoco">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_nav">
                     <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="navbar_nav">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a href="/index.html" class="accueil nav-link">Accueil</a>
+                            <a href="/frontend/index.html" class="accueil nav-link">Accueil</a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">Meubles en chêne</a>
@@ -59,7 +59,7 @@
                         <tr> <!--Product 1 row-->
                             <th scope="row">1</th>
                             <td>
-                                <img class="img-thumbnail img-fluid" src="/assets/images/oak_1.jpg" alt="Table croisé">
+                                <img class="img-thumbnail img-fluid" src="/frontend/assets/images/oak_1.jpg" alt="Table croisé">
                             </td>
                             <td>
                                 <h5>Table croisé</h5>
@@ -83,7 +83,7 @@
                         <tr> <!--Product 2 row-->
                             <th scope="row">2</th>
                             <td>
-                                <img class="img-thumbnail img-fluid" src="/assets/images/oak_2.jpg" alt="Table basse">
+                                <img class="img-thumbnail img-fluid" src="/frontend/assets/images/oak_2.jpg" alt="Table basse">
                             </td>
                             <td>
                                 <h5>Table basse</h5>
@@ -107,7 +107,7 @@
                         <tr> <!--Product 3 row-->
                             <th scope="row">3</th>
                             <td>
-                                <img class="img-thumbnail img-fluid" src="/assets/images/oak_3.jpg" alt="Table à manger (extensible)">
+                                <img class="img-thumbnail img-fluid" src="/frontend/assets/images/oak_3.jpg" alt="Table à manger (extensible)">
                             </td>
                             <td>
                                 <h5>Table à manger (extensible)</h5>
@@ -131,7 +131,7 @@
                         <tr> <!--Product 4 row-->
                             <th scope="row">4</th>
                             <td>
-                                <img class="img-thumbnail img-fluid" src="/assets/images/oak_4.jpg" alt="Banc"> 
+                                <img class="img-thumbnail img-fluid" src="/frontend/assets/images/oak_4.jpg" alt="Banc"> 
                             </td>
                             <td>
                                 <h5>Banc</h5>
@@ -155,7 +155,7 @@
                         <tr> <!--Product 5 row-->
                             <th scope="row">5</th>
                             <td>
-                                <img class="img-thumbnail img-fluid" src="/assets/images/oak_5.jpg" alt="Chaise Vintage">
+                                <img class="img-thumbnail img-fluid" src="/frontend/assets/images/oak_5.jpg" alt="Chaise Vintage">
                             </td>
                             <td>
                                 <h5>Chaise Vintage</h5>
@@ -198,28 +198,29 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="surname">Nom</label>
-                            <input type="text" class="form-control" id="surname" placeholder="Votre nom">
+                            <input type="text" class="form-control" id="surname" placeholder="Votre nom required">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="city">Ville</label>
-                            <input type="text" class="form-control" id="city" placeholder="Votre ville">
+                            <input type="text" class="form-control" id="city" placeholder="Votre ville required">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="name">Prénom</label>
-                            <input type="text" class="form-control" id="name" placeholder="Votre prénom">
+                            <input type="text" class="form-control" id="name" placeholder="Votre prénom required">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputEmail">E-mail</label>
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Votre e-mail">
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Votre e-mail required">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">Adresse</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="Votre adresse">
-                      </div>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="Votre adresse required">
+                    </div>
                 </form>
             </div>
-        </main> 
+        </main>
+        <script src="/frontend/assets/js/panier.js"></script> 
     </body>
