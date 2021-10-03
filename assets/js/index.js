@@ -12,7 +12,14 @@ function createProduct(listProduct){
     const linkProduct=document.createElement("a");
     linkProduct.classList.add('col-12', 'col-sm-6', 'col-md-4', 'mb-3');
     //linkProduct.href= "/frontend/views/pages de produit/page_de_produit-1cross_table.html" + "?id=" + listProduct._id;
-    linkProduct.setAttribute("href", "/frontend/views/pages de produit/page_de_produit-1cross_table.html" + "?id=" + listProduct[index]._id);
+//    linkProduct.setAttribute("href", "/frontend/views/pages de produit/page_de_produit-1cross_table.html" + "?id=" + listProduct[index]._id);
+    linkProduct.setAttribute("href", "/frontend/views/pages de produit/page_de_produit-1cross_table.html");
+    linkProduct.setAttribute("product-id", listProduct[index]._id);
+    linkProduct.addEventListener('click', function(e){
+      localStorage.setItem('chosenProductID', linkProduct.getAttribute("product-id"));
+//      e.preventDefault();
+    });
+    
 
     // creation de l'enfants de elements div list product
     containerProduct.appendChild(linkProduct);

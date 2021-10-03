@@ -1,5 +1,5 @@
 .container__product-details{ 
-    height: 350px;
+    min-height: 405px;
     .product-image{ 
         height: 100%;
         width: 100%;
@@ -18,4 +18,9 @@
 
 .btn-width{
     width: 90%;
+}
+// element select 
+.form-control-width{
+    display: inline-block;
+    width: 25%;
 }

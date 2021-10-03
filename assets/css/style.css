@@ -43,14 +43,14 @@ header nav a .accueil {
 .card__oak-chair {
   width: 348px;
   height: 232px;
-  /*object-fit: contain;*/
+  object-fit: contain;
 }
 .card .card-image-top {
   height: 287px;
 }
 
 .container__product-details {
-  height: 350px;
+  min-height: 405px;
 }
 .container__product-details .product-image {
   height: 100%;
@@ -69,6 +69,11 @@ header nav a .accueil {
 
 .btn-width {
   width: 90%;
+}
+
+.form-control-width {
+  display: inline-block;
+  width: 25%;
 }
 
 .img-thumbnail {

@@ -4,8 +4,9 @@ var currentProductInCard=[];
 /* 
 cette function me permets de créer les details sur un produit
 */ 
-function createProductPage(chosenProduct) {
- //creation de container de la page de produit   
+//function createProductPage(chosenProduct) {
+function createProductPage() {
+//creation de container de la page de produit   
  const productPage=document.getElementById("product-page");
 
   //création de l'élément div qui englobe les détails du produit
@@ -60,6 +61,45 @@ function createProductPage(chosenProduct) {
 
   //creation de l'enfants de element div productNameBlock
   productNameBlock.appendChild(productPrice);
+
+  // creation de element div productNameBlockQuantity, deuxième ligne pour choisir la quantité et afficher le prix total
+  const productNameBlockQuantity=document.createElement("div");
+  productNameBlockQuantity.classList.add('row', 'product-name');  
+  productDescriptionBlock.appendChild(productNameBlockQuantity);
+
+  //creation de element span productQuantityRow, qui contient l'élément pour choisir la quantité
+  const productQuantityRow=document.createElement("span");
+  productQuantityRow.classList.add('p-3', 'product-name-width', 'font-weight-bold');
+  productQuantityRow.innerText="Qté : ";
+  productNameBlockQuantity.appendChild(productQuantityRow);
+
+  //creation de element select productQuantitySelect, qui crée un menu pour choisir la quantité de produit
+  const productQuantitySelect=document.createElement("select");
+  productQuantitySelect.classList.add('form-control', 'mx-2', 'form-control-width');
+  productQuantityRow.appendChild(productQuantitySelect);
+
+  //creation des elements option productQuantitySelectOption, en utilisant la boucle pour créer jusqu'à 4 options pour la quantité
+  for (let i = 1; i < 5; i++){
+    const productQuantitySelectOption=document.createElement("option");
+    productQuantitySelectOption.innerText=i.toString();
+    productQuantitySelect.appendChild(productQuantitySelectOption);
+  };
+  //
+  productQuantitySelect.selectedIndex=chosenProduct.quantity - 1;
+  //
+  productQuantitySelect.addEventListener('change', function(e){
+      chosenProduct.quantity=productQuantitySelect.selectedIndex + 1;
+      chosenProduct.totalPrice=chosenProduct.price * chosenProduct.quantity;
+      productQuantityTotalPrice.innerText="Prix total : " + chosenProduct.totalPrice + "  \u20AC";
+  });
+
+  // creation de element span productQuantityTotalPrice
+  const productQuantityTotalPrice=document.createElement("span");
+  productQuantityTotalPrice.classList.add('p-3', 'product-name-width', 'font-weight-bold');
+  // compter le prix total
+  productQuantityTotalPrice.innerText="Prix total : " + chosenProduct.totalPrice + "  \u20AC";
+  productNameBlockQuantity.appendChild(productQuantityTotalPrice); 
+
 
   //creation de element div productDescriptionBox
   const productDescriptionBox=document.createElement("div");
@@ -185,7 +225,11 @@ function getChosenProduct(productId) {
     .then(function(value) {
       console.log("produit choisi : ", value);
       chosenProduct=value;
-      createProductPage(value);
+      chosenProduct.quantity=1;
+      chosenProduct.totalPrice=chosenProduct.price * chosenProduct.quantity;
+      console.log("chosenProduct : ", chosenProduct);
+//      createProductPage(value);
+      createProductPage();
     })
     .catch(function(err) {
       // Une erreur est survenue
@@ -197,21 +241,26 @@ cette fonction permet de récupérer l'identifiant du paramètre de l'URL pour r
 */
 function getIdParameterFromUrl(){
     
-    const queryString = window.location.search;
-    console.log(queryString);
+   // const queryString = window.location.search;
+   // console.log(queryString);
     
-    const urlParams = new URLSearchParams(queryString);
-    const paramId = new String(urlParams.get('id'));
-    console.log(paramId);
-    
-    getChosenProduct(paramId);
-}
+   // const urlParams = new URLSearchParams(queryString);
+    //const paramId = new String(urlParams.get('id'));
 
+    const paramId=localStorage.getItem('chosenProductID');
+
+    if (paramId==null){
+        console.log("Paramètre d'identification introuvable");
+    }else{
+        console.log("paramId : ", paramId);
+        getChosenProduct(paramId);
+    }
+}
 getIdParameterFromUrl();
 
 /*
  le code de click pour ajouter au panier 
- */
+*/
  function addProductToCart(productToAdd){
 
     //permet de recuperer les produits qui sont dans le panier
@@ -225,5 +274,5 @@ getIdParameterFromUrl();
         localStorage.setItem('card', JSON.stringify(currentProductInCard));
     }
     
-    console.log("le produit a afficher dans le panier est ", productToAdd);
+    console.log("le produit a afficher dans le panier est : ", productToAdd);
  }
