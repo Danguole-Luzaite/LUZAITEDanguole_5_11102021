@@ -22,5 +22,6 @@
 // element select 
 .form-control-width{
     display: inline-block;
-    width: 25%;
+    min-width: 56px;
+    max-width: 80px;
 }

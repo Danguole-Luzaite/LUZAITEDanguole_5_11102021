@@ -20,7 +20,6 @@ function createProduct(listProduct){
 //      e.preventDefault();
     });
     
-
     // creation de l'enfants de elements div list product
     containerProduct.appendChild(linkProduct);
 
@@ -66,6 +65,33 @@ function createProduct(listProduct){
 }
 
 /* 
+cette fonction pour voir si les produits sont dans le panier, et si c'est le cas, pour compter leur somme des quantités et mettre le nombre de quantité dans le localStorage
+*/
+function getProductsCount(){
+  var productsInCart=JSON.parse(localStorage.getItem('cart'));
+  var sumOfQuantities=0;
+  // fonction pour vérifier si le panier n'est pas vide
+  if (productsInCart != null && productsInCart.length > 0){
+    // pour compter si les produits choisi est dans le panier
+    for(let index in productsInCart){
+      sumOfQuantities=sumOfQuantities + productsInCart[index].quantity;
+    }
+  }
+  localStorage.setItem('productsCount', sumOfQuantities.toString());
+}
+
+/* 
+cette fonction est d'afficher le nombre de produits dans le panier sur la page
+*/
+function showProductsCount(){
+  const productsNumber=localStorage.getItem('productsCount');
+  var cartNumber=document.getElementById('number-cart');
+  console.log("cartNumber", cartNumber);
+
+  cartNumber.innerText= "(" + productsNumber + ")";
+}
+
+/* 
 cette fonction envoie la liste des produits du serveur
 */
 function getListProducts() {
@@ -81,6 +107,12 @@ function getListProducts() {
   })
   .catch(function(err) {
     // Une erreur est survenue
+    console.log("error", error);
   });
 }
+
+
 getListProducts();
+ 
+getProductsCount();
+showProductsCount();

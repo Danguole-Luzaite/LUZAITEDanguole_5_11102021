@@ -1,13 +1,34 @@
 var chosenProduct={};
-var currentProductInCard=[];
+var currentProductInCart=JSON.parse(localStorage.getItem('cart'));
+
+
+/* 
+cette function me permets de vérifier si le produit actuel est déjà dans le panier
+*/ 
+function checkCurrentProductInCart(){
+  // cette variable sert au retour de valeur, si le produit n'est pas dans le panier
+  var productInCart=false;
+  // fonction pour vérifier si le panier n'est pas vide
+  if (currentProductInCart != null && currentProductInCart.length > 0){
+    // pour vérifier si le produit choisi est dans le panier
+    for(let index in currentProductInCart){
+      if (currentProductInCart[index]._id == chosenProduct._id){
+        productInCart=true;
+      }
+    } 
+  }
+  // retourner le résultat vérifié
+  return (productInCart);
+}
+
 
 /* 
 cette function me permets de créer les details sur un produit
 */ 
 //function createProductPage(chosenProduct) {
 function createProductPage() {
-//creation de container de la page de produit   
- const productPage=document.getElementById("product-page");
+  //creation de container de la page de produit   
+  const productPage=document.getElementById("product-page");
 
   //création de l'élément div qui englobe les détails du produit
   const productBlock=document.createElement("div");
@@ -84,7 +105,7 @@ function createProductPage() {
     productQuantitySelectOption.innerText=i.toString();
     productQuantitySelect.appendChild(productQuantitySelectOption);
   };
-  //
+  // 
   productQuantitySelect.selectedIndex=chosenProduct.quantity - 1;
   //
   productQuantitySelect.addEventListener('change', function(e){
@@ -166,11 +187,16 @@ function createProductPage() {
       dropdownMenuElement.appendChild(dropdownMenuElementLink);
   }
 
-  //creation de élément div statusProductCard pour afficher le statut de produit dans le panier
-  const statusProductCard=document.createElement("div");
-  statusProductCard.classList.add('col-6', 'col-sm-6', 'text-danger', 'pt-2');
-  statusProductCard.innerText="Produit déjà dans le panier";
-  productStatusAndCategory.appendChild(statusProductCard);
+  //creation de élément div statusProductCart pour afficher le statut de produit dans le panier
+  const statusProductCart=document.createElement("div");
+  statusProductCart.classList.add('col-6', 'col-sm-6', 'text-danger', 'pt-2');
+  //
+  if(checkCurrentProductInCart()){
+    statusProductCart.innerText="Produit déjà dans le panier";
+  }else{
+    statusProductCart.innerText="";
+  }
+  productStatusAndCategory.appendChild(statusProductCart);
 
   //creation de élément div block, productButtonsBlock, qui contient les boutons "Retourner" et "Ajouter au panier"
   const productButtonsBlock=document.createElement("div");
@@ -203,8 +229,10 @@ function createProductPage() {
   const productButtonAjouter=document.createElement("button");
   productButtonAjouter.classList.add('btn', 'btn-outline-primary', 'btn-width');
   productButtonAjouter.innerText="Ajouter au panier";
+  productButtonAjouter.disabled=checkCurrentProductInCart();
   productButtonAjouter.addEventListener('click', function(e){
     addProductToCart(chosenProduct);
+    location.reload();
     e.preventDefault();
    });
 
@@ -256,23 +284,56 @@ function getIdParameterFromUrl(){
         getChosenProduct(paramId);
     }
 }
-getIdParameterFromUrl();
+
 
 /*
  le code de click pour ajouter au panier 
 */
- function addProductToCart(productToAdd){
+function addProductToCart(productToAdd){
 
-    //permet de recuperer les produits qui sont dans le panier
-    currentProductInCard=JSON.parse(localStorage.getItem('card'));
-    if (currentProductInCard==null){
-        currentProductInCard=[];
-        currentProductInCard.push(productToAdd);
-        localStorage.setItem('card', JSON.stringify(currentProductInCard));
-    }else{
-        currentProductInCard.push(productToAdd);
-        localStorage.setItem('card', JSON.stringify(currentProductInCard));
-    }
+  //permet de recuperer les produits qui sont dans le panier
+  currentProductInCart=JSON.parse(localStorage.getItem('cart'));
+  if (currentProductInCart==null){
+      currentProductInCart=[];
+      currentProductInCart.push(productToAdd);
+      localStorage.setItem('cart', JSON.stringify(currentProductInCart));
+  }else{
+      currentProductInCart.push(productToAdd);
+      localStorage.setItem('cart', JSON.stringify(currentProductInCart));
+  }
     
-    console.log("le produit a afficher dans le panier est : ", productToAdd);
- }
+  console.log("le produit a afficher dans le panier est : ", productToAdd);
+}
+
+
+/* 
+cette fonction pour compter le nombre de produits dans le panier
+*/
+function getProductsCount(){
+  var productsInCart=JSON.parse(localStorage.getItem('cart'));
+  var sumOfQuantities=0;
+  // fonction pour vérifier si le panier n'est pas vide
+  if (productsInCart != null && productsInCart.length > 0){
+    // pour vérifier si le produit choisi est dans le panier
+    for(let index in productsInCart){
+      sumOfQuantities=sumOfQuantities + productsInCart[index].quantity;
+    }
+  }
+  localStorage.setItem('productsCount', sumOfQuantities.toString());
+}
+
+/* 
+cette fonction pour montrer combien de produits sont dans le panier
+*/
+function showProductsCount(){
+  const productsNumber=localStorage.getItem('productsCount');
+  var cartNumber=document.getElementById('number-cart2');
+  cartNumber.innerHTML= "(" + productsNumber + ")";
+}
+
+
+getIdParameterFromUrl();
+
+//import{getProductsCount, showProductsCount} from './index.js';
+getProductsCount();
+showProductsCount();

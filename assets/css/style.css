@@ -73,7 +73,8 @@ header nav a .accueil {
 
 .form-control-width {
   display: inline-block;
-  width: 25%;
+  min-width: 56px;
+  max-width: 80px;
 }
 
 .img-thumbnail {
@@ -82,6 +83,11 @@ header nav a .accueil {
 
 .total-price {
   font-size: 1.3rem;
+}
+
+.contacts-title {
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 /*# sourceMappingURL=style.css.map */
