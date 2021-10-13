@@ -106,6 +106,8 @@
                     <div class="col">
                         <span class="mr-3 font-weight-bold">Somme totale:</span>
                     </div>
+
+
                     <form id="" action="" method="POST" class="col">
                         <button type="submit" class="btn btn-lg px-5 float-right btn-outline-primary">Commander</button>
                     </form>
@@ -115,33 +117,39 @@
             </div>
 
              <!--Block "Formulaire"-->
-            <div class="container shadow mt-5 mb-5 pb-4">
+            <div class="container form-box shadow mt-5 mb-5 pb-4">
                 <h2 class="mt-3 mb-3 py-3">Formulaire</h2>
-                <form action="/" method="post" required>
+                <form action="/" method="post">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="surname">Nom</label>
-                            <input type="text" class="form-control" id="surname" placeholder="Votre nom" onchange="checkOrderButtonState()" required>
+                            <input type="text" class="form-control" id="surname" placeholder="Votre nom" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="city">Ville</label>
-                            <input type="text" class="form-control" id="city" placeholder="Votre ville" onchange="checkOrderButtonState()" required>
+                            <input type="text" class="form-control" id="city" placeholder="Votre ville" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="name">Prénom</label>
-                            <input type="text" class="form-control" id="name" placeholder="Votre prénom" onchange="checkOrderButtonState()" required>
+                            <input type="text" class="form-control" id="name" placeholder="Votre prénom" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputEmail">E-mail</label>
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Votre e-mail" onchange="checkOrderButtonState()" required>
+                            <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Votre e-mail" 
+                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">Adresse</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="Votre adresse" onchange="checkOrderButtonState()" required>
+                        <input type="text" class="form-control" id="inputAddress" placeholder="Votre adresse" required>
                     </div>
+                    <div id="order-submit-button" class="form-row float-right my-2 py-2">
+<!--
+                        <button type="submit" class="btn btn-lg px-5  btn-outline-primary">Commander</button>
+-->                        
+                    </div>  
                 </form>
             </div>
         </main>

@@ -40,6 +40,11 @@ header nav a .accueil {
   transition: all 0.001s;
 }
 
+/* Block "Formulaire"*/
+.form-box {
+  min-height: 429px;
+}
+
 .card__oak-chair {
   width: 348px;
   height: 232px;

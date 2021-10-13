@@ -136,6 +136,7 @@ cette fonction vérifie si les conditions pour passer une commande sont toutes r
 function checkOrderConditionsAreMet(){
   // cette variable contient le résultat total des conditions vérifiées
   var conditionsAreMet=true;
+  
   conditionsAreMet=conditionsAreMet && (listProductsInCart != null);
   conditionsAreMet=conditionsAreMet && (listProductsInCart.length > 0);
   var inputElementValue=document.getElementById("surname").value;
@@ -146,6 +147,10 @@ function checkOrderConditionsAreMet(){
   conditionsAreMet=conditionsAreMet && (inputElementValue != "" && inputElementValue != "Votre prénom");
   inputElementValue=document.getElementById("inputEmail").value;
   conditionsAreMet=conditionsAreMet && (inputElementValue != "" && inputElementValue != "Votre e-mail");
+  // pour tester si l'email est écrit correctement en utilisant la méthode test()
+  var emailPattern = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$");
+  conditionsAreMet=conditionsAreMet && (emailPattern.test(inputElementValue));
+
   inputElementValue=document.getElementById("inputAddress").value;
   conditionsAreMet=conditionsAreMet && (inputElementValue != "" && inputElementValue != "Votre adresse");
 
@@ -180,13 +185,8 @@ function createCartTableGrandTotal(){
   cartTableGrandTotalCost.innerText="Somme totale : " + getGrandTotalCost() + " \u20AC";
   cartTableGrandTotalColumn.appendChild(cartTableGrandTotalCost);
 
-  //crée un élément form cartTableOrderButtonForm
-  const cartTableOrderButtonForm=document.createElement("form");
-  cartTableOrderButtonForm.classList.add("col");
-  cartTableOrderButtonForm.setAttribute("id", "");
-  cartTableOrderButtonForm.setAttribute("action", "");
-  cartTableOrderButtonForm.setAttribute("method", "POST");
-  shoppingCartTableGrandTotal.appendChild(cartTableOrderButtonForm);
+  //crée un élément div dans le formulaire cartTableOrderButtonForm
+  const cartTableOrderButtonForm=document.getElementById("order-submit-button");
 
   //crée un élément button cartTableOrderButton
   const cartTableOrderButton=document.createElement("button");
@@ -194,21 +194,27 @@ function createCartTableGrandTotal(){
   cartTableOrderButton.type="submit";
   cartTableOrderButton.classList.add('btn', 'btn-lg', 'px-5', 'float-right', 'btn-outline-primary');
   cartTableOrderButton.innerText="Commander";
+
   // appelle la fonction pour vérifier si toutes les conditions nécessaires seront remplie pour déverrouiller le bouton pour commander
-  cartTableOrderButton.disabled=!checkOrderConditionsAreMet();
+//  cartTableOrderButton.disabled=!checkOrderConditionsAreMet();
 
   //
   cartTableOrderButton.addEventListener('click', function(e){
-    // l’objet contact envoyé au serveur
-    var orderRequestDetails={};
+    if(checkOrderConditionsAreMet()){
+      // l’objet contact envoyé au serveur
+      var orderRequestDetails={};
     
-    orderRequestDetails.contact=createContactObject();
-    orderRequestDetails.products=createProductsIdArray();
+      orderRequestDetails.contact=createContactObject();
+      orderRequestDetails.products=createProductsIdArray();
 
-    console.log("orderRequestDetails", orderRequestDetails);
+      console.log("orderRequestDetails", orderRequestDetails);
 
-    // appelez la fonction pour envoyer l’objet contact
-    processOrderRequest(orderRequestDetails);
+      // appelez la fonction pour envoyer l’objet contact
+      processOrderRequest(orderRequestDetails);
+    }else{
+      alert("Pour finaliser votre commande, il doit y avoir au moins un article dans votre panier et toutes les coordonnées demandées doivent être saisies correctement dans le formulaire.");
+//      e.preventDefault();
+    }; 
   });
   cartTableOrderButtonForm.appendChild(cartTableOrderButton);
 
@@ -298,13 +304,8 @@ function createCartTableGrandTotalZero(){
   cartTableGrandTotalCost.innerText="Somme totale : 0  \u20AC";
   cartTableGrandTotalColumn.appendChild(cartTableGrandTotalCost);
 
-  //crée un élément form cartTableOrderButtonForm
-  const cartTableOrderButtonForm=document.createElement("form");
-  cartTableOrderButtonForm.classList.add("col");
-  cartTableOrderButtonForm.setAttribute("id", "");
-  cartTableOrderButtonForm.setAttribute("action", "/");
-  cartTableOrderButtonForm.setAttribute("method", "POST");
-  shoppingCartTableGrandTotal.appendChild(cartTableOrderButtonForm);
+  //crée un élément div dans le formulaire cartTableOrderButtonForm
+  const cartTableOrderButtonForm=document.getElementById("order-submit-button");
 
   //crée un élément button cartTableOrderButton
   const cartTableOrderButton=document.createElement("button");
