@@ -3,7 +3,7 @@ var currentProductInCart=JSON.parse(localStorage.getItem('cart'));
 
 
 /* 
-cette function me permets de vérifier si le produit actuel est déjà dans le panier
+cette fonction me permets de vérifier si le produit actuel est déjà dans le panier
 */ 
 function checkCurrentProductInCart(){
   // cette variable sert au retour de valeur, si le produit n'est pas dans le panier
@@ -23,7 +23,7 @@ function checkCurrentProductInCart(){
 
 
 /* 
-cette function me permets de créer les details sur un produit
+cette fonction me permets de créer les details sur un produit
 */ 
 //function createProductPage(chosenProduct) {
 function createProductPage() {
@@ -230,6 +230,7 @@ function createProductPage() {
   productButtonAjouter.classList.add('btn', 'btn-outline-primary', 'btn-width');
   productButtonAjouter.innerText="Ajouter au panier";
   productButtonAjouter.disabled=checkCurrentProductInCart();
+  //
   productButtonAjouter.addEventListener('click', function(e){
     addProductToCart(chosenProduct);
     location.reload();
@@ -241,7 +242,7 @@ function createProductPage() {
 }
 
 /*
-cette fonction envoie le produit choisi depuis le serveur
+Cette fonction fait une requête Fetch API pour envoyer les détails de produit choisi depuis le serveur par son id
 */
 function getChosenProduct(productId) {
     fetch("http://localhost:3000/api/furniture/" + productId)
@@ -253,6 +254,7 @@ function getChosenProduct(productId) {
     .then(function(value) {
       console.log("produit choisi : ", value);
       chosenProduct=value;
+      //Quantité et prix total du produit choisi à ajouter aux informations du serveur
       chosenProduct.quantity=1;
       chosenProduct.totalPrice=chosenProduct.price * chosenProduct.quantity;
       console.log("chosenProduct : ", chosenProduct);
@@ -265,15 +267,9 @@ function getChosenProduct(productId) {
 }
 
 /*
-cette fonction permet de récupérer l'identifiant du paramètre de l'URL pour renvoyer l'élément avec l'identifiant correspondant
+Cette fonction permet de récupérer l'id du paramètre de l'URL pour renvoyer l'élément avec l'id correspondant
 */
 function getIdParameterFromUrl(){
-    
-   // const queryString = window.location.search;
-   // console.log(queryString);
-    
-   // const urlParams = new URLSearchParams(queryString);
-    //const paramId = new String(urlParams.get('id'));
 
     const paramId=localStorage.getItem('chosenProductID');
 
@@ -287,7 +283,7 @@ function getIdParameterFromUrl(){
 
 
 /*
- le code de click pour ajouter au panier 
+Fonction pour ajouter le produit actuellement sélectionné au panier et enregistre dans localStorage
 */
 function addProductToCart(productToAdd){
 
@@ -307,7 +303,7 @@ function addProductToCart(productToAdd){
 
 
 /* 
-cette fonction pour compter le nombre de produits dans le panier
+cette fonction est de compter le nombre de produits ajoutés dans le panier et ajouter la somme à localStorage
 */
 function getProductsCount(){
   var productsInCart=JSON.parse(localStorage.getItem('cart'));
@@ -323,7 +319,7 @@ function getProductsCount(){
 }
 
 /* 
-cette fonction pour montrer combien de produits sont dans le panier
+Cette fonction est d'afficher sur la page du produit, combien de produits sont dans le panier
 */
 function showProductsCount(){
   const productsNumber=localStorage.getItem('productsCount');
@@ -333,7 +329,5 @@ function showProductsCount(){
 
 
 getIdParameterFromUrl();
-
-//import{getProductsCount, showProductsCount} from './index.js';
 getProductsCount();
 showProductsCount();

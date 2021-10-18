@@ -159,7 +159,7 @@ function checkOrderConditionsAreMet(){
 
 
 /*
-cette fonction vérifie les conditions pour le bouton de commande
+cette fonction vérifie les conditions pour le bouton de commande, sinon - le bouton "commander" reste désactivé jusqu'à ce que toutes les conditions soient remplies
 */
 function checkOrderButtonState(){
   const button=document.getElementById("button-order"); 
@@ -196,9 +196,7 @@ function createCartTableGrandTotal(){
   cartTableOrderButton.innerText="Commander";
 
   // appelle la fonction pour vérifier si toutes les conditions nécessaires seront remplie pour déverrouiller le bouton pour commander
-//  cartTableOrderButton.disabled=!checkOrderConditionsAreMet();
 
-  //
   cartTableOrderButton.addEventListener('click', function(e){
     if(checkOrderConditionsAreMet()){
       // l’objet contact envoyé au serveur
@@ -220,7 +218,9 @@ function createCartTableGrandTotal(){
 
 };
 
-//
+/* 
+Cette fonction crée un objet pour le contact, les informations des utilisateurs, pour être utilisé ultérieurement pour l'envoyer au serveur
+*/
 function createContactObject(){
   var contactObject={};
 
@@ -234,7 +234,9 @@ function createContactObject(){
   return (contactObject);
 };
 
-//
+/* 
+Cette fonction crée un tableau des produits ajoutés au panier, à utiliser ultérieurement pour l'envoyer au serveur
+*/
 function createProductsIdArray(){
   var productsIdArray=[];
   var productsArray=JSON.parse(localStorage.getItem("cart"));
@@ -248,7 +250,7 @@ function createProductsIdArray(){
 
 
 /*
-fonction POST...
+Cette fonction fetch avec la méthode "POST" pour envoyer les détails de la demande de commande et recevoir une réponse du serveur
 */
 function processOrderRequest(orderRequestDetails){
   fetch("http://localhost:3000/api/furniture/order", {
@@ -272,9 +274,6 @@ function processOrderRequest(orderRequestDetails){
         console.log("Order response : ", resp);
 				// pour enregistrer la réponse du serveur dans le stockage local
         localStorage.setItem('orderResponse', JSON.stringify(resp));
-        // supprime le localStorage
-//        localStorage.removeItem('cart');
-//        localStorage.removeItem('chosenProductID');
 				// appel la page de confirmation
         window.location.assign("/frontend/views/page_de_confirmation.html");
 			}
@@ -336,6 +335,5 @@ function createCartTableBody(){
       createCartTableGrandTotal();
   }
 };
-
 
 createCartTableBody();

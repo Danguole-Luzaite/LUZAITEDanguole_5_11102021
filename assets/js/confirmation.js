@@ -23,24 +23,24 @@ function getProductQuantity(productId){
 fonction pour créer les détails de la confirmation de commande
 */
 function createOrderConfirmationDetails(){
-    //
+    //prend les informations de orderId, contact et produits
     orderConfirmationDetails.orderId=orderResponseDetails.orderId;
     orderConfirmationDetails.contact=orderResponseDetails.contact;
     orderConfirmationDetails.products=orderResponseDetails.products;
-    //
+    //compte la somme totale du prix
     var totalPriceSum=0;
     for(let index in orderConfirmationDetails.products){
         orderConfirmationDetails.products[index].quantity = getProductQuantity(orderConfirmationDetails.products[index]._id);
         orderConfirmationDetails.products[index].totalPrice = orderConfirmationDetails.products[index].quantity * orderConfirmationDetails.products[index].price;
         totalPriceSum = totalPriceSum + orderConfirmationDetails.products[index].totalPrice;
     };
-    //
+    //donne la somme totale du prix
     orderConfirmationDetails.totalSum = totalPriceSum;
-    //
+    //appelle la fonction pour supprimer les informations de localStorage
     deleteLocalStorageData();
 
     console.log("orderConfirmationDetails", orderConfirmationDetails);
-    //
+    //appelle la fonction pour créer la page de confirmation de commande
     createOrderConfirmationPage();
     
 };
@@ -70,7 +70,7 @@ function createOrderConfirmationPage(){
     document.getElementById("address").innerText="Adresse : " + orderConfirmationDetails.contact.address;
     document.getElementById("email").innerText="E-mail : " + orderConfirmationDetails.contact.email;
 
-    //
+    //la boucle pour créer des lignes de produits commandés
     const productsRows=document.getElementById("products-rows");
     for(let index in orderConfirmationDetails.products){
         const productRow=document.createElement("tr");
@@ -92,7 +92,7 @@ function createOrderConfirmationPage(){
         productRow.appendChild(productTotalPrice);
     };
 
-    //
+    //indique le montant total de la commande
     document.getElementById("total-sum").innerText = orderConfirmationDetails.totalSum + "  \u20AC";
 };
 
