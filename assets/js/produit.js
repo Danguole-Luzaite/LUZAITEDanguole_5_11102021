@@ -141,51 +141,31 @@ function createProductPage() {
   productStatusAndCategory.classList.add('row');
   productDescriptionBlock.appendChild(productStatusAndCategory);
 
-  //creation de element div customizationMenuBlock pour personnalisation de produit, menu déroulant
-  const customizationMenuBlock=document.createElement("div");
-  customizationMenuBlock.classList.add('dropdown', 'col-6', 'col-sm-6');
-  
+
+  //creation de element select customizationMenuBlock pour personnalisation de produit, menu déroulant
+  const customizationMenuBlock=document.createElement("select");
+  customizationMenuBlock.classList.add('form-select', 'form-select-sm', 'col-6', 'col-sm-6');
+
   //creation de l'enfants de element div productDescriptionBlock
   productStatusAndCategory.appendChild(customizationMenuBlock);
 
-  //creation de element button dropdownToggleButton
-  const  dropdownToggleButton=document.createElement("button");
-  dropdownToggleButton.classList.add('btn', 'btn-default', 'dropdown-toggle');
-  dropdownToggleButton.type="button";
-  dropdownToggleButton.setAttribute("data-toggle", "dropdown");
-  dropdownToggleButton.innerText="Sélectionnez le type de vernis...";
-
-  //creation de l'enfants de element div customizationMenuBlock
-  customizationMenuBlock.appendChild(dropdownToggleButton);
-
-  //creation de element span buttonCaret
-  const buttonCaret=document.createElement("span");
-  buttonCaret.classList.add("caret");
-
-  //creation de l'enfants de element button dropdownToggleButton
-  dropdownToggleButton.appendChild(buttonCaret);
-
-  //creation de element ul dropdownMenuList
-  const dropdownMenuList=document.createElement("ul");
-  dropdownMenuList.classList.add("dropdown-menu");
-
-  
-  //creation de l'enfants de element div customizationMenuBlock
-  customizationMenuBlock.appendChild(dropdownMenuList);
+  //creation de element option customizationMenuOptionText
+  const customizationMenuOptionText=document.createElement("option");
+  customizationMenuOptionText.setAttribute("selected", "true");
+  customizationMenuOptionText.innerText="Sélectionnez le type de vernis...";
+  customizationMenuBlock.appendChild(customizationMenuOptionText);
 
   //une boucle pour obtenir une liste des éléments du menu déroulant (vernis) pour la personnalisation du produit choisi
   for (index in chosenProduct.varnish){
-      //creation de element li dropdownMenuElement
-      const dropdownMenuElement=document.createElement("li");
-      dropdownMenuList.appendChild(dropdownMenuElement);
+    //creation de element option dropdownMenuElement
+    const dropdownMenuElement=document.createElement("option");
+    dropdownMenuElement.classList.add("pl-2");
+    dropdownMenuElement.setAttribute("value", chosenProduct.varnish[index]);
+    dropdownMenuElement.innerText=chosenProduct.varnish[index];
 
-      //creation de element a dropdownMenuElementLink
-      const dropdownMenuElementLink=document.createElement("a");
-      dropdownMenuElementLink.classList.add("pl-2");
-      dropdownMenuElementLink.href="#";
-      dropdownMenuElementLink.innerText=chosenProduct.varnish[index];
-      dropdownMenuElement.appendChild(dropdownMenuElementLink);
+    customizationMenuBlock.appendChild(dropdownMenuElement);
   }
+
 
   //creation de élément div statusProductCart pour afficher le statut de produit dans le panier
   const statusProductCart=document.createElement("div");
