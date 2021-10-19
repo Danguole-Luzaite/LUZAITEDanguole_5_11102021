@@ -136,7 +136,7 @@ function createProductPage() {
   //creation de l'enfants de element div productDescriptionBox
   productDescriptionBox.appendChild(productDescriptionText);
   
-  // cet div contient de statut de produit et categorie
+  // cet div contient de statut de produit et catégorie
   const productStatusAndCategory=document.createElement("div");
   productStatusAndCategory.classList.add('row');
   productDescriptionBlock.appendChild(productStatusAndCategory);

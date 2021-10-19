@@ -88,7 +88,7 @@ function createOrderConfirmationPage(){
 
         const productTotalPrice=document.createElement("td");
         productTotalPrice.scope="row";
-        productTotalPrice.innerText=orderConfirmationDetails.products[index].totalPrice;
+        productTotalPrice.innerText=orderConfirmationDetails.products[index].totalPrice + " \u20AC";
         productRow.appendChild(productTotalPrice);
     };
 
